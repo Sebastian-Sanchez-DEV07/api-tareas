@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <title>Task Terminal</title>
+</head>
+<body>
+    <div id="terminal-wrapper" class="box">
+        <header>
+            <div id="header-container" class="box">
+                <h1>TASK_TERMINAL</h1>
+                <span aria-label="Current time"><p>[</p><div id="clock">00:00:00</div><p>]</p></span>
+            </div>
+        </header>
+
+        <!-- Vista de autenticación: login / register -->
+        <main id="auth-view" class="auth-grid" hidden>
+            <aside class="command-panel box">
+                <div class="panel-title">[ LOGIN ]</div>
+                <form id="login-form">
+                    <label for="login-email">EMAIL</label>
+                    <input id="login-email" name="email" type="email"
+                        placeholder="user@mail.com" autocomplete="email" required>
+                    <label for="login-password">PASSWORD</label>
+                    <input id="login-password" name="password" type="password"
+                        placeholder="********" autocomplete="current-password" required>
+                    <button type="submit">&gt; LOGIN</button>
+                    <p id="login-message" class="form-message" role="alert"></p>
+                </form>
+                <p class="switch-mode">No account?
+                    <button type="button" id="switch-to-register" class="link-button">[ REGISTER ]</button>
+                </p>
+            </aside>
+
+            <aside class="command-panel box" id="register-panel" hidden>
+                <div class="panel-title">[ REGISTER ]</div>
+                <form id="register-form">
+                    <label for="register-nombre">NAME</label>
+                    <input id="register-nombre" name="nombre" type="text" maxlength="50"
+                        placeholder="Your name" autocomplete="name" required>
+                    <label for="register-email">EMAIL</label>
+                    <input id="register-email" name="email" type="email"
+                        placeholder="user@mail.com" autocomplete="email" required>
+                    <label for="register-contrasena">PASSWORD</label>
+                    <input id="register-contrasena" name="contrasena" type="password" minlength="4"
+                        placeholder="min 4 characters" autocomplete="new-password" required>
+                    <button type="submit">+ CREATE USER</button>
+                    <p id="register-message" class="form-message" role="alert"></p>
+                </form>
+                <p class="switch-mode">Already registered?
+                    <button type="button" id="switch-to-login" class="link-button">[ LOGIN ]</button>
+                </p>
+            </aside>
+        </main>
+
+        <!-- Vista de tareas: requiere token -->
+        <main class="dashboard-grid" id="tasks-view" hidden>
+            <aside class="command-panel box">
+                <div class="panel-title">[ NEW_TASK ]</div>
+                <form id="task-form">
+                    <label for="titulo-input">TITLE</label>
+                    <input id="titulo-input" name="titulo" type="text" maxlength="80"
+                        placeholder="Type a title..." autocomplete="off" required>
+                    <label for="descripcion-input">DESCRIPTION</label>
+                    <input id="descripcion-input" name="descripcion" type="text" maxlength="160"
+                        placeholder="Type a description..." autocomplete="off" required>
+                    <button type="submit">+ ADD</button>
+                    <p id="form-message" class="form-message" role="alert"></p>
+                </form>
+
+                <div class="terminal-note">
+                    <span>&gt; session: <span id="session-user">unknown</span></span>
+                    <span>&gt; API REST: <span id="api-status">offline</span></span>
+                    <span>&gt; storage: server JSON</span>
+                </div>
+
+                <button type="button" id="logout-button">&lt; LOGOUT</button>
+            </aside>
+
+            <section class="tasks-panel box" aria-labelledby="tasks-title">
+                <div class="section-heading">
+                    <h2 id="tasks-title">TASK_LIST</h2>
+                    <span id="task-count">0 / 0</span>
+                </div>
+                <ul id="task-list" class="task-list"></ul>
+                <p id="empty-state" class="empty-state">No tasks. The system is waiting for instructions.</p>
+            </section>
+
+            <aside class="status-panel box">
+                <div class="panel-title">[ STATUS ]</div>
+                <div class="status-circle" aria-hidden="true">OK</div>
+                <p class="status-label">PROGRESS</p>
+                <div class="progress-track" aria-label="Task progress">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <p id="progress-text" class="progress-text">0% complete</p>
+            </aside>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

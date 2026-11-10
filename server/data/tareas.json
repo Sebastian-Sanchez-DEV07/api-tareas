@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "titulo": "Configurar el servidor Express",
+    "descripcion": "Crear server.js y levantar el servidor en el puerto 3000",
+    "completada": true
+  },
+  {
+    "id": 2,
+    "titulo": "Implementar las rutas CRUD",
+    "descripcion": "Crear los endpoints GET, POST, PUT y DELETE de /tareas",
+    "completada": false
+  },
+  {
+    "id": 3,
+    "titulo": "Implementar la autenticación",
+    "descripcion": "Registrar usuarios con bcryptjs y proteger rutas con JWT",
+    "completada": false
+  }
+]
